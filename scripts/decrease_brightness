@@ -1,0 +1,5 @@
+#!/bin/bash
+brightness=$(cat /sys/class/leds/asus::kbd_backlight/brightness)
+if (( brightness > 0 )); then
+    echo $((brightness-1)) | sudo tee /sys/class/leds/asus::kbd_backlight/brightness > /dev/null
+fi

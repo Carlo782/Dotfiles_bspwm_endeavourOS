@@ -1,0 +1,19 @@
+#!/bin/bash
+
+IMAGE_PATH="$1" 
+
+wal -q -e -i "$IMAGE_PATH"
+
+~/.config/polybar/docky/scripts/pywal.sh "$IMAGE_PATH"
+
+pywal-discord -t default
+
+. "$HOME/.cache/wal/colors.sh"
+
+sed -i 's|background = "#.*"|background = "'${background}'"|' /home/kivye/.config/dunst/dunstrc
+sed -i 's|foreground = "#.*"|foreground = "'${foreground}'"|' /home/kivye/.config/dunst/dunstrc
+sed -i 's|frame_color = "#.*"|frame_color = "'${color5}'"|' /home/kivye/.config/dunst/dunstrc
+
+pkill dunst
+
+bspc wm -r
