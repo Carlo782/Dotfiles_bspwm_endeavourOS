@@ -1,0 +1,27 @@
+#!/bin/sh
+
+archivo="/lib/systemd/system-sleep/nvidia"
+
+nuevo_contenido=$(cat << EOM
+#!/bin/sh
+
+case "\$1" in
+    pre)
+        case "\$SYSTEMD_SLEEP_ACTION" in
+            suspend|hibernate)
+                /usr/bin/nvidia-sleep.sh "\$SYSTEMD_SLEEP_ACTION"
+                ;;
+            suspend-after-failed-hibernate)
+                /usr/bin/nvidia-sleep.sh "suspend"
+                ;;
+        esac
+        ;;
+    post)
+        /usr/bin/nvidia-sleep.sh "resume"
+        ;;
+esac
+EOM
+)
+
+# Sobrescribe el contenido del archivo
+echo "$nuevo_contenido" | sudo tee "$archivo" > /dev/null

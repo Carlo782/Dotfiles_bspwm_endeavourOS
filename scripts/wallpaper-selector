@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Directorio donde se encuentran las imágenes
+image_dir="/home/kivye/Imágenes/Wallpapers/"
+
+# Obtener la lista de imágenes en el directorio
+image_list=$(ls "$image_dir" | grep -E '\.(png|jpg|jpeg|gif)$')
+
+# Mostrar las imágenes utilizando sxiv en modo de selección única
+selected_image=$(echo "$image_list" | sxiv -iotq "$image_dir")
+
+# Verificar si se seleccionó una imagen
+if [ -z "$selected_image" ]; then
+    exit 1
+fi
+
+# Realizar acciones con la imagen seleccionada
+theme "$selected_image"
