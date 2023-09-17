@@ -1,5 +1,4 @@
 #! /bin/sh
-
 pgrep -x sxhkd > /dev/null || sxhkd &
  
 bspc monitor -d I II III IV V VI
@@ -17,6 +16,8 @@ bspc rule -a Gimp desktop='^6' state=floating follow=on
 # bspc rule -a Chromium desktop='^2'
 # bspc rule -a firefox desktop='^2'
 bspc rule -a mplayer2 state=floating
+bspc rule -a Sxiv state=floating
+bspc rule -a Pycalendar.py state=floating rectangle=600x400+660+51
 bspc rule -a Yad state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
@@ -33,6 +34,8 @@ bspc config presel_feedback_color       "$color2"
 #
 # Set display from arandr saved script
 sh ~/.screenlayout/monitor.sh &
+# Nvidia sleep error fix
+nvidia-sleep-fix &
 # Keyboard layout
 setxkbmap -layout us -variant altgr-intl &
 # Bar
@@ -51,7 +54,6 @@ picom -b &
 nm-applet --indicator &
 # Cursor
 xsetroot -cursor_name left_ptr &
-
 # Low battery notifier
 ~/.config/bspwm/scripts/low_bat_notifier.sh
 
