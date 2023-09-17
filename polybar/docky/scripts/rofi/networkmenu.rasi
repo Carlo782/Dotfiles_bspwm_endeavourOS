@@ -55,13 +55,12 @@ entry {
     placeholder-color:              @bar;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search...";
     padding:                        0px 0px 0px 10px;
     blink:                          true;
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt ];
+	children: 						[ textbox-prompt-colon, prompt, entry ];
     background-color:               @ac;
     text-color:                     @bar;
     expand:                         false;

@@ -3,7 +3,7 @@
 dir="$HOME/.config/polybar/docky/scripts/rofi"  # Utiliza $HOME en lugar de ~ para la variable dir.
 
 # Lista de nombres de las aplicaciones que deseamos buscar automáticamente.
-declare -a apps=("Discord" "flameshot")
+declare -a apps=("Discord" "flameshot" "steam" "docker")
 
 # Filtrar las aplicaciones en ejecución y agregarlas a la lista de aplicaciones activas.
 active_apps=()
@@ -32,6 +32,8 @@ else
                     discord &
                 elif [ "$chosen_app" == "flameshot" ]; then  # Corregir la condición del if.
                     flameshot gui &
+                elif [ "$chosen_app" == "steam" ]; then  # Corregir la condición del if.
+                    steam &
                 else
                     # Verificar si la ventana ya existe y activarla si es el caso.
                     if xdotool search --name "$chosen_app" windowactivate >/dev/null 2>&1; then
